@@ -1,0 +1,140 @@
+CREATE TABLE Sender (
+    userID NUMBER PRIMARY KEY,
+    name VARCHAR2(30) NOT NULL,
+    email VARCHAR2(30) NOT NULL,
+    phone NUMBER NOT NULL,
+    address VARCHAR2(30) NOT NULL,
+    city VARCHAR2(30) NOT NULL,
+    country VARCHAR2(30) NOT NULL
+);
+
+-- Create Receiver Table
+CREATE TABLE Receiver (
+    receiverID NUMBER PRIMARY KEY,
+    name VARCHAR2(30) NOT NULL,
+    phone NUMBER NOT NULL,
+    address VARCHAR2(30) NOT NULL,
+    city VARCHAR2(30) NOT NULL,
+    country VARCHAR2(30) NOT NULL
+);
+
+-- Create Delivery Table
+CREATE TABLE Delivery (
+    transportID NUMBER PRIMARY KEY,
+    transportMethod VARCHAR2(20) NOT NULL,
+    costPerUnit NUMBER(7,2) NOT NULL
+);
+
+-- Create Package Table
+CREATE TABLE Package (
+    userID NUMBER,
+    receiverID NUMBER,
+    transportID NUMBER,
+    orderID NUMBER PRIMARY KEY,
+    dateReceived DATE NOT NULL,
+    deliveryDate DATE NOT NULL,
+    weight NUMBER(7,2) NOT NULL,
+    FOREIGN KEY (userID) REFERENCES Sender (userID),
+    FOREIGN KEY (receiverID) REFERENCES Receiver (receiverID),
+    FOREIGN KEY (transportID) REFERENCES Delivery (transportID)
+);
+
+-- Create Billing Table
+CREATE TABLE Billing (
+    transactionID NUMBER PRIMARY KEY,
+    cost NUMBER NOT NULL,
+    description VARCHAR(40) NOT NULL,
+    orderID NUMBER,
+    FOREIGN KEY (orderID) REFERENCES Package (orderID)
+);
+
+-- Create Tracking Table
+CREATE TABLE Tracking (
+    trackingID NUMBER PRIMARY KEY,
+    origin VARCHAR2(30) NOT NULL,
+    currentLocation VARCHAR2(30) NOT NULL,
+    destination VARCHAR2(30) NOT NULL,
+    date DATE NOT NULL,
+    orderID NUMBER,
+    FOREIGN KEY (orderID) REFERENCES Package (orderID)
+);
+
+-- Insert into Sender Table
+INSERT INTO Sender (userID, name, email, phone, address, city, country) 
+VALUES 
+    (201, 'Walter Scott', 'walterscott@gmail.com', 202555130, 'Orchard Avenue', 'Denver', 'United States'),
+    (202, 'Walker Adams', 'walkeradams@gmail.com', 202555169, 'Crescent Street', 'Miami', 'United States'),
+    (203, 'Larry Nelson', 'larrynelson@gmail.com', 202555172, 'Laurel Drive', 'San Francisco', 'United States'),
+    (204, 'Thanishekaran Adith', 'santoshadith@gmail.com', 44567389, 'Dubai Downtown', 'Dubai', 'United Arab Emirates'),
+    (205, 'Soumyajit Das', 'soumyajit1998@gmail.com', 8756873435, 'Park Street', 'Kolkata', 'India'),
+    (206, 'Aditya Santosh', 'adityasan45@yahoo.com', 8789743214, 'White Street', 'Mumbai', 'India'),
+    (207, 'Emily Cabler', 'emilycabler@gmail.com', 33590886, 'Route 30', 'London', 'United Kingdom'),
+    (208, 'Samar Garg', 'gargsamar2001@gmail.com', 8997664545, 'Crescent Street', 'Delhi', 'India'),
+    (209, 'Abdul Azeem', 'azeemshaik123@gmail.com', 34345050, 'Lusail Main', 'Doha', 'Qatar'),
+    (210, 'Kenneth Brown', 'kennethbrown@yahoo.com', 234443115, 'Route 30', 'Manchester', 'United Kingdom');
+
+-- Insert into Receiver Table
+INSERT INTO Receiver (receiverID, name, phone, address, city, country) 
+VALUES 
+    (301, 'Venkatesh Thota', 7995708966, 'Venkat Nagar Park', 'Kakinada', 'India'),
+    (302, 'Karthik Rekhapalli', 8179409631, 'Navabharat Nagar', 'Rajahmundry', 'India'),
+    (303, 'Hamid Ahmed', 8765554345, 'Main Road', 'Warangal', 'India'),
+    (304, 'Jimmy Carter', 707578432, 'Malibu Drive', 'Malibu', 'United States'),
+    (305, 'Dio Brando', 320840284, 'Northern Suburb Road', 'London', 'United Kingdom'),
+    (306, 'Jotaro Kujo', 283082483, 'Tokyo Circle', 'Tokyo', 'Japan'),
+    (307, 'Rajesh Kumar', 4342940910, 'Kritipur', 'Kathmandu', 'Nepal'),
+    (308, 'RD Sharma', 8448948993, 'Marine Drive', 'Mumbai', 'India'),
+    (309, 'Jauwaad Shams', 9573590856, 'Deira', 'Riyadh', 'Saudi Arabia'),
+    (310, 'Keshav Ganesh', 50456778, 'Village Road', 'Manama', 'Bahrain');
+
+-- Insert into Delivery Table
+INSERT INTO Delivery (transportID, transportMethod, costPerUnit) 
+VALUES 
+    (1, 'AIR', 300),
+    (2, 'SEA', 50),
+    (3, 'LAND', 150),
+    (4, 'EXPRESS AIR', 450),
+    (5, 'EXPRESS SEA', 90),
+    (6, 'EXPRESS LAND', 250);
+
+-- Insert into Package Table
+INSERT INTO Package (userID, receiverID, transportID, orderID, dateReceived, deliveryDate, weight) 
+VALUES 
+    (201, 301, 2, 101, '2024-03-10', '2024-05-10', 150),
+    (202, 302, 3, 102, '2024-04-05', '2024-04-28', 10),
+    (203, 303, 2, 103, '2024-04-15', '2024-06-16', 120),
+    (204, 304, 5, 104, '2024-04-20', '2024-06-05', 200),
+    (202, 305, 1, 105, '2024-04-24', '2024-05-04', 18),
+    (205, 306, 4, 106, '2024-04-29', '2024-05-03', 9),
+    (206, 307, 6, 107, '2024-04-07', '2024-04-30', 30),
+    (206, 307, 3, 108, '2024-04-02', '2024-05-10', 0.5),
+    (207, 308, 4, 109, '2024-04-30', '2024-05-05', 20),
+    (208, 309, 1, 110, '2024-04-22', '2024-05-09', 6),
+    (209, 310, 1, 111, '2024-04-19', '2024-05-04', 10),
+    (210, 309, 4, 112, '2024-04-29', '2024-05-06', 11);
+
+-- Insert into Billing Table
+INSERT INTO Billing (transactionID, cost, description, orderID) 
+VALUES 
+    (401, 7500, 'SCOOTER', 101),
+    (402, 1500, 'BOOKS', 102),
+    (403, 6000, 'TREADMILL', 103),
+    (404, 18000, 'MOTOR BIKE', 104),
+    (405, 5400, 'FRIDGE', 105),
+    (406, 4050, 'AC', 106),
+    (407, 7500, 'WASHING MACHINE', 107),
+    (408, 75, 'DOCUMENTS', 108),
+    (409, 9000, 'BED', 109);
+
+-- Insert into Tracking Table
+INSERT INTO Tracking (trackingID, origin, currentLocation, destination, date, orderID) 
+VALUES 
+    (501, 'United States', 'United Kingdom', 'India', '2024-05-04', 101),
+    (502, 'United States', 'United Kingdom', 'India', '2024-04-26', 102),
+    (503, 'United States', 'United Kingdom', 'India', '2024-06-14', 103),
+    (504, 'United Arab Emirates', 'Italy', 'United States', '2024-06-03', 104),
+    (505, 'United States', 'Iceland', 'United Kingdom', '2024-05-02', 105),
+    (506, 'India', 'New Zealand', 'Japan', '2024-05-02', 106),
+    (507, 'India', 'Bhutan', 'Nepal', '2024-04-28', 107),
+    (508, 'India', 'Bhutan', 'Nepal', '2024-05-08', 108),
+    (509, 'India', 'Singapore', 'India', '2024-05-03', 109);
