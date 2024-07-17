@@ -1,3 +1,4 @@
+-- Create Sender Table
 CREATE TABLE Sender (
     userID NUMBER PRIMARY KEY,
     name VARCHAR2(30) NOT NULL,
@@ -100,18 +101,18 @@ VALUES
 -- Insert into Package Table
 INSERT INTO Package (userID, receiverID, transportID, orderID, dateReceived, deliveryDate, weight) 
 VALUES 
-    (201, 301, 2, 101, '2024-03-10', '2024-05-10', 150),
-    (202, 302, 3, 102, '2024-04-05', '2024-04-28', 10),
-    (203, 303, 2, 103, '2024-04-15', '2024-06-16', 120),
-    (204, 304, 5, 104, '2024-04-20', '2024-06-05', 200),
-    (202, 305, 1, 105, '2024-04-24', '2024-05-04', 18),
-    (205, 306, 4, 106, '2024-04-29', '2024-05-03', 9),
-    (206, 307, 6, 107, '2024-04-07', '2024-04-30', 30),
-    (206, 307, 3, 108, '2024-04-02', '2024-05-10', 0.5),
-    (207, 308, 4, 109, '2024-04-30', '2024-05-05', 20),
-    (208, 309, 1, 110, '2024-04-22', '2024-05-09', 6),
-    (209, 310, 1, 111, '2024-04-19', '2024-05-04', 10),
-    (210, 309, 4, 112, '2024-04-29', '2024-05-06', 11);
+    (201, 301, 2, 101, '2021-03-10', '2021-05-10', 150),
+    (202, 302, 3, 102, '2021-04-05', '2021-04-28', 10),
+    (203, 303, 2, 103, '2021-04-15', '2021-06-16', 120),
+    (204, 304, 5, 104, '2021-04-20', '2021-06-05', 200),
+    (202, 305, 1, 105, '2021-04-24', '2021-05-04', 18),
+    (205, 306, 4, 106, '2021-04-29', '2021-05-03', 9),
+    (206, 307, 6, 107, '2021-04-07', '2021-04-30', 30),
+    (206, 307, 3, 108, '2021-04-02', '2021-05-10', 0.5),
+    (207, 308, 4, 109, '2021-04-30', '2021-05-05', 20),
+    (208, 309, 1, 110, '2021-04-22', '2021-05-09', 6),
+    (209, 310, 1, 111, '2021-04-19', '2021-05-04', 10),
+    (210, 309, 4, 112, '2021-04-29', '2021-05-06', 11);
 
 -- Insert into Billing Table
 INSERT INTO Billing (transactionID, cost, description, orderID) 
@@ -129,12 +130,13 @@ VALUES
 -- Insert into Tracking Table
 INSERT INTO Tracking (trackingID, origin, currentLocation, destination, date, orderID) 
 VALUES 
-    (501, 'United States', 'United Kingdom', 'India', '2024-05-04', 101),
-    (502, 'United States', 'United Kingdom', 'India', '2024-04-26', 102),
-    (503, 'United States', 'United Kingdom', 'India', '2024-06-14', 103),
-    (504, 'United Arab Emirates', 'Italy', 'United States', '2024-06-03', 104),
-    (505, 'United States', 'Iceland', 'United Kingdom', '2024-05-02', 105),
-    (506, 'India', 'New Zealand', 'Japan', '2024-05-02', 106),
-    (507, 'India', 'Bhutan', 'Nepal', '2024-04-28', 107),
-    (508, 'India', 'Bhutan', 'Nepal', '2024-05-08', 108),
-    (509, 'India', 'Singapore', 'India', '2024-05-03', 109);
+    (501, 'United States', 'United Kingdom', 'India', '2021-05-04', 101),
+    (502, 'United States', 'United Kingdom', 'India', '2021-04-26', 102),
+    (503, 'United States', 'United Kingdom', 'India', '2021-06-14', 103),
+    (504, 'United Arab Emirates', 'Italy', 'United States', '2021-06-03', 104),
+    (505, 'United States', 'Iceland', 'United Kingdom', '2021-05-02', 105),
+    (506, 'India', 'New Zealand', 'Japan', '2021-05-02', 106),
+    (507, 'India', 'Bhutan', 'Nepal', '2021-04-28', 107),
+    (508, 'India', 'Bhutan', 'Nepal', '2021-05-08', 108),
+    (509, 'India', 'Singapore', 'India', '2021-05-03', 109);
+
