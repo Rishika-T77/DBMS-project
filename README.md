@@ -7,7 +7,7 @@ This project implements a database management system tailored for handling logis
 
 # Basic Structure
 ## Database Entities
- There are 8 entities in this database. They are
+ There are 6 entities in this database. They are
  - Sender
  - Receiver
  - Delivery
@@ -19,4 +19,9 @@ This project implements a database management system tailored for handling logis
  Each entity consists of several attributes.
 
 ## Entity Relationship diagram
-<img src=https://github.com/user-attachments/assets/cbb14194-c7fb-4d33-a5df-d48d0eef1ffa>
+<img src=https://github.com/user-attachments/assets/cbb14194-c7fb-4d33-a5df-d48d0eef1ffa> 
+
+# Contributors
+-THANGALLAPALLY RISHIKA
+
+-CHIDUGU JESSY JASMIN
